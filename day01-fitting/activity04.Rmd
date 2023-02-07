@@ -1,8 +1,80 @@
 ---
-title: "Activity 4 - Day 1"
+title: "Activity 4"
+author: "Sayed Muhammad Saifuddin"
+date: "2/7/2023"
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## Day 1
+
+### Task 2: Load the necessary packages
+
+```{r, message=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(GGally)
+library(ggthemes)
+```
+
+### Task 3: Load the data
+
+```{r}
+evals <- readr::read_tsv("https://www.openintro.org/data/tab-delimited/evals.txt")
+```
+
+
+
+```{r}
+dplyr::glimpse(evals)
+```
+
+
+
+```{r}
+hist(evals$score)
+```
+
+```{r}
+# Distribution of different Claim Amounts
+evals %>% ggplot(aes( y = age, 
+                          x = gender,
+                          fill = gender)) +
+  geom_boxplot() +
+  labs(y = "Age of the students in class",
+    title = "Distribution of students by gender") + 
+  theme_bw() +
+  theme(legend.position = "none",
+        text = element_text(face = "bold"),
+        axis.text.x = element_text(angle = -20,
+                                   size = 7,
+                                   vjust = .7)) +
+  scale_color_viridis_d()
+```
+
+### Task 4: Pairwise relationships
+
+```{r}
+evals %>% 
+  select(starts_with("bty_")) %>% 
+  ggpairs()
+```
+
+### Task 5: Multiple linear regression: one quantitative predictor, one qualitative predictor
+
+```{r}
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+tidy(m_bty_gen)
+```
+
+```{r}
+m_bty_rank <- lm(score ~ bty_avg + rank, data = evals)
+tidy(m_bty_rank)
+```
+
+
+
+
