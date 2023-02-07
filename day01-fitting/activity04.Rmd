@@ -6,3 +6,10 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(GGally)
+```
+
