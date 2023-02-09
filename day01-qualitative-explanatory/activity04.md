@@ -110,7 +110,7 @@ tidy(m_bty_gen)
 
 ``` r
 m_bty_rank <- lm(score ~ bty_avg + rank, data = evals)
-tidy(m_bty_rank)
+tidy(m_bty_rank) 
 ```
 
     ## # A tibble: 4 × 5
