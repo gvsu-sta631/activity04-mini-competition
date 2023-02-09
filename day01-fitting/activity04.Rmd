@@ -7,9 +7,52 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r warning = FALSE}
+```{r, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(tidymodels)
 library(GGally)
+```
+
+```{r}
+evals <- readr::read_tsv("https://www.openintro.org/data/tab-delimited/evals.txt")
+```
+
+```{r}
+dplyr::glimpse(evals)
+```
+
+```{r}
+hist(evals$score)
+```
+
+The distribution is left skewed.
+
+```{r}
+evals %>% ggplot(aes( y = age, 
+                      x = gender,
+                      fill = gender)) +
+  geom_boxplot() +
+  labs(y = "Age of the Student",
+       x = "Gender of the Student",
+    title = "Distribution of students' Age vs Gender") + 
+  theme_bw() +
+  scale_color_viridis_d()
+```
+
+From the above plot we can say that most of the female students are of age of 45 and most of the male students are age of around 50.
+
+```{r}
+evals %>% select(starts_with("bty_")) %>% ggpairs
+  
+```
+
+```{r}
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+tidy(m_bty_gen)
+```
+
+```{r}
+m_int <- lm(score ~ bty_avg * gender, data = evals)
+tidy(m_int)
 ```
 
