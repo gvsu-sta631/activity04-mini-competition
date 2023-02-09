@@ -120,3 +120,33 @@ tidy(m_bty_rank)
     ## 2 bty_avg            0.0678    0.0165      4.10 4.92e-  5
     ## 3 ranktenure track  -0.161     0.0740     -2.17 3.03e-  2
     ## 4 ranktenured       -0.126     0.0627     -2.01 4.45e-  2
+
+## Day 2
+
+``` r
+m_int <- lm(score ~ bty_avg * gender, data = evals)
+tidy(m_int)
+```
+
+    ## # A tibble: 4 × 5
+    ##   term               estimate std.error statistic   p.value
+    ##   <chr>                 <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1 (Intercept)          3.95      0.118      33.5  2.92e-125
+    ## 2 bty_avg              0.0306    0.0240      1.28 2.02e-  1
+    ## 3 gendermale          -0.184     0.153      -1.20 2.32e-  1
+    ## 4 bty_avg:gendermale   0.0796    0.0325      2.45 1.46e-  2
+
+``` r
+r_int <- lm(score ~ bty_avg * rank, data = evals)
+tidy(r_int)
+```
+
+    ## # A tibble: 6 × 5
+    ##   term                     estimate std.error statistic  p.value
+    ##   <chr>                       <dbl>     <dbl>     <dbl>    <dbl>
+    ## 1 (Intercept)                4.10      0.150    27.4    1.80e-98
+    ## 2 bty_avg                    0.0417    0.0314    1.33   1.84e- 1
+    ## 3 ranktenure track          -0.0188    0.230    -0.0818 9.35e- 1
+    ## 4 ranktenured               -0.409     0.182    -2.25   2.52e- 2
+    ## 5 bty_avg:ranktenure track  -0.0264    0.0463   -0.570  5.69e- 1
+    ## 6 bty_avg:ranktenured        0.0659    0.0392    1.68   9.38e- 2

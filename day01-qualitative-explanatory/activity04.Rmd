@@ -75,6 +75,16 @@ m_bty_rank <- lm(score ~ bty_avg + rank, data = evals)
 tidy(m_bty_rank) 
 ```
 
+## Day 2
+
+```{r}
+m_int <- lm(score ~ bty_avg * gender, data = evals)
+tidy(m_int)
+```
 
 
+```{r}
+r_int <- lm(score ~ bty_avg * rank, data = evals)
+tidy(r_int)
+```
 
