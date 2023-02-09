@@ -108,7 +108,7 @@ tidy(m_int)
 
 ``` r
 r_int <- lm(score ~ bty_avg * rank, data = evals)
-tidy(r_int)
+tidy(r_int) 
 ```
 
     ## # A tibble: 6 × 5
